@@ -5,6 +5,18 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreativeMinds.Identity.MongoDBStores", "CreativeMinds.Identity.MongoDBStores\CreativeMinds.Identity.MongoDBStores.csproj", "{032FEED4-1021-409A-AE1C-F9EB207AD7A7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{2B9D8BA3-B272-40C6-AE28-F96EFD350262}"
+	ProjectSection(SolutionItems) = preProject
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{95066291-4DCF-4C7D-887C-0D9C88A9B073}"
+	ProjectSection(SolutionItems) = preProject
+		..\appveyor.yml = ..\appveyor.yml
+		..\Install-MongoDb-On-AppVeyor.ps1 = ..\Install-MongoDb-On-AppVeyor.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
