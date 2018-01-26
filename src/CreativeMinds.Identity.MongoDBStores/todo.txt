@@ -1,0 +1,13 @@
+﻿
+
+Indexes on fields!
+
+User:
+NormalizedUserName
+NormalizedEmail
+
+Role:
+NormalizedName
+
+
+// Claims/Tokens/Logins ????
