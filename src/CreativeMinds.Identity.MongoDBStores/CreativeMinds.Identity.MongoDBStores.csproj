@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.5.0</Version>
+    <Authors>Steen F. Tøttrup</Authors>
+    <Company>CreativeMinds Ivs</Company>
+    <Description>An Identity provider for ASP.NET Core using MongoDB as datastore</Description>
+    <Copyright>Copyright 2018 (C) CreativeMinds Ivs. All rights reserved.</Copyright>
+    <PackageLicenseUrl>https://github.com/steentottrup/aspnetcore-identity-mongodb/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/steentottrup/aspnetcore-identity-mongodb</PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <RepositoryUrl>https://github.com/steentottrup/aspnetcore-identity-mongodb</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>Identity</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
