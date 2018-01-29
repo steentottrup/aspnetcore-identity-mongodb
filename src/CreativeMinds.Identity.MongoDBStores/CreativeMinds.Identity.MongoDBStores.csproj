@@ -13,6 +13,7 @@
     <RepositoryUrl>https://github.com/steentottrup/aspnetcore-identity-mongodb</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Identity</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
