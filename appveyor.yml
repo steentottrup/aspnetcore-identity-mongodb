@@ -17,9 +17,9 @@ nuget:
   project_feed: true
 build_script:
   - ps: >-
-      dotnet build src\creativeminds.CreativeMinds.Identity.MongoDBStores\ -c Release
+      dotnet build src\creativeminds.identity.mongodbstores\ -c Release
 
 after_build:
   - ps: >-
-      Push-AppveyorArtifact src\creativeminds.CreativeMinds.Identity.MongoDBStores\bin\Release\*.nupkg
+      Push-AppveyorArtifact src\creativeminds.identity.mongodbstores\bin\Release\*.nupkg
 
