@@ -740,17 +740,19 @@ namespace CreativeMinds.Identity.MongoDBStores {
 				);
 		}
 
-		protected virtual Task<IdentityUserLogin> FindUserLoginAsync(String loginProvider, String providerKey, CancellationToken cancellationToken) {
+		protected virtual async Task<IdentityUserLogin> FindUserLoginAsync(String loginProvider, String providerKey, CancellationToken cancellationToken) {
 			cancellationToken.ThrowIfCancellationRequested();
 
-			return Task.FromResult(
-				this
+			TUser user = await this
 					.userCollection
 					.Find(u => u.Logins.Any(l => l.LoginProvider == loginProvider && l.ProviderKey == providerKey))
-					.SingleOrDefault()
-					.Logins
-					.SingleOrDefault(ul => ul.LoginProvider == loginProvider && ul.ProviderKey == providerKey)
-				);
+					.SingleOrDefaultAsync();
+			if (user == null) {
+				return null;
+			}
+
+			return user.Logins
+					.SingleOrDefault(ul => ul.LoginProvider == loginProvider && ul.ProviderKey == providerKey);
 		}
 
 		protected virtual Task<UserRole> FindUserRoleAsync(ObjectId userId, ObjectId roleId, CancellationToken cancellationToken) {
