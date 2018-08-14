@@ -6,7 +6,7 @@ using System;
 namespace CreativeMinds.Identity.MongoDBStores
 {
 
-	public class IdentityUserLogin : IdentityUserLogin<ObjectId> {
+	public class IdentityUserLogin /*: IdentityUserLogin<ObjectId>*/ {
 
 		public IdentityUserLogin() { }
 
@@ -17,11 +17,11 @@ namespace CreativeMinds.Identity.MongoDBStores
 		}
 
 		[BsonElement(FieldNames.LoginProvider)]
-		public override String LoginProvider { get; set; }
+		public String LoginProvider { get; set; }
 		[BsonElement(FieldNames.ProviderDisplayName)]
-		public override String ProviderDisplayName { get; set; }
+		public String ProviderDisplayName { get; set; }
 		[BsonElement(FieldNames.ProviderKey)]
-		public override String ProviderKey { get; set; }
+		public String ProviderKey { get; set; }
 
 		public static class FieldNames {
 			public const String LoginProvider = "lip";

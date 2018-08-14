@@ -163,15 +163,17 @@ namespace CreativeMinds.Identity.MongoDBStores {
 			return null;
 		}
 
-		public virtual async Task<TUser> FindByLoginAsync(String loginProvider, String providerKey, CancellationToken cancellationToken) {
+		public virtual Task<TUser> FindByLoginAsync(String loginProvider, String providerKey, CancellationToken cancellationToken) {
 			cancellationToken.ThrowIfCancellationRequested();
 
-			IdentityUserLogin userLogin = await this.FindUserLoginAsync(loginProvider, providerKey, cancellationToken);
-			if (userLogin != null) {
-				return await this.FindUserAsync(userLogin.UserId, cancellationToken);
-			}
+			FilterDefinition<TUser> filter = Builders<TUser>.Filter.And(
+					Builders<TUser>.Filter.Eq($"{MongoDBIdentityUser.FieldNames.Logins}.{IdentityUserLogin.FieldNames.LoginProvider}", loginProvider),
+					Builders<TUser>.Filter.Eq($"{MongoDBIdentityUser.FieldNames.Logins}.{IdentityUserLogin.FieldNames.ProviderKey}", providerKey)
+				);
 
-			return null;
+			return this
+				.userCollection.Find(filter)
+					.SingleOrDefaultAsync(cancellationToken);
 		}
 
 		public virtual Task<TUser> FindByNameAsync(String normalizedUserName, CancellationToken cancellationToken) {
