@@ -102,8 +102,8 @@ namespace CreativeMinds.Identity.MongoDBStores {
 				throw new InvalidOperationException();
 			}
 
-			List<UserRole> newList = new List<UserRole>(user.Roles);
-			newList.Add(new UserRole { RoleId = roleEntity.Id, Name = roleEntity.Name });
+			List<MongoDBIdentityUserRole> newList = new List<MongoDBIdentityUserRole>(user.Roles);
+			newList.Add(new MongoDBIdentityUserRole { RoleId = roleEntity.Id, Name = roleEntity.Name });
 			user.Roles = newList;
 		}
 
@@ -170,6 +170,10 @@ namespace CreativeMinds.Identity.MongoDBStores {
 					Builders<TUser>.Filter.Eq($"{MongoDBIdentityUser.FieldNames.Logins}.{IdentityUserLogin.FieldNames.LoginProvider}", loginProvider),
 					Builders<TUser>.Filter.Eq($"{MongoDBIdentityUser.FieldNames.Logins}.{IdentityUserLogin.FieldNames.ProviderKey}", providerKey)
 				);
+
+
+
+			TUser hans = this.userCollection.Find(filter).SingleOrDefault();
 
 			return this
 				.userCollection.Find(filter)
@@ -461,9 +465,9 @@ namespace CreativeMinds.Identity.MongoDBStores {
 
 			TRole roleEntity = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
 			if (roleEntity != null) {
-				UserRole userRole = user.Roles.SingleOrDefault(r => r.RoleId == roleEntity.Id);
+				MongoDBIdentityUserRole userRole = user.Roles.SingleOrDefault(r => r.RoleId == roleEntity.Id);
 				if (userRole != null) {
-					List<UserRole> newList = new List<UserRole>(user.Roles);
+					List<MongoDBIdentityUserRole> newList = new List<MongoDBIdentityUserRole>(user.Roles);
 					newList.Remove(userRole);
 					user.Roles = newList;
 				}
@@ -757,17 +761,19 @@ namespace CreativeMinds.Identity.MongoDBStores {
 					.SingleOrDefault(ul => ul.LoginProvider == loginProvider && ul.ProviderKey == providerKey);
 		}
 
-		protected virtual Task<UserRole> FindUserRoleAsync(ObjectId userId, ObjectId roleId, CancellationToken cancellationToken) {
+		protected virtual async Task<UserRole> FindUserRoleAsync(ObjectId userId, ObjectId roleId, CancellationToken cancellationToken) {
 			cancellationToken.ThrowIfCancellationRequested();
 
-			return Task.FromResult(
-				this
-					.userCollection
+			MongoDBIdentityUserRole ur = (await this.userCollection
 					.Find(u => u.Id == userId && u.Roles.Any(r => r.RoleId == roleId))
-					.SingleOrDefault()
+					.SingleOrDefaultAsync(cancellationToken))
 					.Roles
-					.SingleOrDefault(r => r.RoleId == roleId)
-				);
+					.SingleOrDefault(r => r.RoleId == roleId);
+			if (ur != null) {
+				return new UserRole { RoleId = roleId, UserId = userId };
+			}
+
+			return null;
 		}
 
 		protected virtual async Task RemoveUserTokenAsync(IdentityUserToken token) {

@@ -8,7 +8,7 @@ namespace CreativeMinds.Identity.MongoDBStores {
 	public class MongoDBIdentityUser {
 
 		public MongoDBIdentityUser() {
-			this.Roles = new List<UserRole>();
+			this.Roles = new List<MongoDBIdentityUserRole>();
 			this.Logins = new List<IdentityUserLogin>();
 			this.Claims = new List<IdentityUserClaim>();
 			this.Tokens = new List<IdentityUserToken>();
@@ -43,7 +43,7 @@ namespace CreativeMinds.Identity.MongoDBStores {
 		public virtual Int32 AccessFailedCount { get; set; }
 		[BsonIgnoreIfNull]
 		[BsonElement(FieldNames.Roles)]
-		public virtual IEnumerable<UserRole> Roles { get; set; }
+		public virtual IEnumerable<MongoDBIdentityUserRole> Roles { get; set; }
 		[BsonIgnoreIfNull]
 		[BsonElement(FieldNames.PasswordHash)]
 		public virtual String PasswordHash { get; set; }

@@ -4,8 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Security.Claims;
 
-namespace CreativeMinds.Identity.MongoDBStores
-{
+namespace CreativeMinds.Identity.MongoDBStores {
 
 	public class IdentityUserClaim : IdentityUserClaim<ObjectId> {
 

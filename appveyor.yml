@@ -1,4 +1,4 @@
-version: 0.5.0.{build}
+version: 0.5.5.{build}
 configuration: Release
 init:
 - ps: "nuget sources update -Name AppVeyorAccountFeed -Source $env:nuget_source -UserName $env:nuget_user -Password $env:nuget_password"
