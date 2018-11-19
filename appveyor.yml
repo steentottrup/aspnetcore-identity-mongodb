@@ -1,5 +1,7 @@
 version: 0.5.5.{build}
 configuration: Release
+services:
+  - mongodb
 init:
 - ps: "nuget sources update -Name AppVeyorAccountFeed -Source $env:nuget_source -UserName $env:nuget_user -Password $env:nuget_password"
 dotnet_csproj:
@@ -22,4 +24,3 @@ build_script:
 after_build:
   - ps: >-
       Push-AppveyorArtifact src\creativeminds.identity.mongodbstores\bin\Release\*.nupkg
-
