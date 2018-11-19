@@ -19,7 +19,7 @@ nuget:
   project_feed: true
 build_script:
   - ps: >-
-      dotnet build src\creativeminds.identity.mongodbstores\CreativeMinds.Identity.MongoDBStores.sln -c Release
+      dotnet build src\CreativeMinds.Identity.MongoDBStores.sln -c Release
 
 after_build:
   - ps: >-
