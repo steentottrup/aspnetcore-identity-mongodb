@@ -19,8 +19,7 @@ namespace CreativeMinds.Identity.MongoDBStores.Tests {
 			UserStore<MockUser, MockRole, MockUserToken> userStore = new UserStore<MockUser, MockRole, MockUserToken>(users, roles);
 			IdentityResult result = userStore.CreateAsync(new MockUser { Email = "test@test.com", UserName = "MisterTest", PasswordHash = "" }, new System.Threading.CancellationToken()).Result;
 
-
-
+			Assert.True(result.Succeeded == true);
 		}
 	}
 }
