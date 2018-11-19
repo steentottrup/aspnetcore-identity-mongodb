@@ -24,6 +24,7 @@ build_script:
 after_build:
   - ps: >-
       Push-AppveyorArtifact src\creativeminds.identity.mongodbstores\bin\Release\*.nupkg
-
-test_script:
-  - cmd: dotnet test test\CreativeMinds.Identity.MongoDBStores.Tests\
+test:
+  assemblies:
+    only:
+      - '**\*.tests.dll'
