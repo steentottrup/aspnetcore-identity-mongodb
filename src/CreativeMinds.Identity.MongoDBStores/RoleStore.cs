@@ -92,7 +92,7 @@ namespace CreativeMinds.Identity.MongoDBStores {
 				throw new ArgumentNullException(nameof(role));
 			}
 
-			return role.Claims.Select(cl => new Claim(cl.ClaimType, cl.ClaimValue)).ToList();
+			return await Task.FromResult(role.Claims.Select(cl => new Claim(cl.ClaimType, cl.ClaimValue)).ToList());
 		}
 
 		public Task<String> GetNormalizedRoleNameAsync(TRole role, CancellationToken cancellationToken) {

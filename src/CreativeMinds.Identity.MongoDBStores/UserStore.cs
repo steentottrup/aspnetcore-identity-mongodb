@@ -209,7 +209,7 @@ namespace CreativeMinds.Identity.MongoDBStores {
 				throw new ArgumentNullException(nameof(user));
 			}
 
-			return user.Claims.Select(cl => new Claim(cl.ClaimType, cl.ClaimValue)).ToList();
+			return await Task.FromResult(user.Claims.Select(cl => new Claim(cl.ClaimType, cl.ClaimValue)).ToList());
 		}
 
 		public virtual Task<String> GetEmailAsync(TUser user, CancellationToken cancellationToken) {
@@ -255,7 +255,7 @@ namespace CreativeMinds.Identity.MongoDBStores {
 				throw new ArgumentNullException(nameof(user));
 			}
 
-			return user.Logins.Select(ul => new UserLoginInfo(ul.LoginProvider, ul.ProviderKey, ul.ProviderDisplayName)).ToList();
+			return await Task.FromResult(user.Logins.Select(ul => new UserLoginInfo(ul.LoginProvider, ul.ProviderKey, ul.ProviderDisplayName)).ToList());
 		}
 
 		public virtual Task<String> GetNormalizedEmailAsync(TUser user, CancellationToken cancellationToken) {
@@ -309,7 +309,8 @@ namespace CreativeMinds.Identity.MongoDBStores {
 			if (user == null) {
 				throw new ArgumentNullException(nameof(user));
 			}
-			return user.Roles.Select(r => r.Name).ToList();
+
+			return await Task.FromResult(user.Roles.Select(r => r.Name).ToList());
 		}
 
 		public virtual Task<String> GetSecurityStampAsync(TUser user, CancellationToken cancellationToken) {
