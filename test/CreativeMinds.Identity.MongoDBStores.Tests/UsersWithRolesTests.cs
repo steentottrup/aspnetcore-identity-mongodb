@@ -11,10 +11,10 @@ namespace CreativeMinds.Identity.MongoDBStores.Tests {
 		public void AddRoleToUser() {
 			var stores = TestInit.GetEmptyStores();
 
-			//UserStore<MockUser, MockRole, MockUserToken> userStore = stores.Item2;
-			//String userName = "MisterTest";
-			//String emailAddress = "test1@test.com";
-			//IdentityResult result = userStore.CreateAsync(new MockUser { Email = emailAddress, UserName = userName, NormalizedUserName = userName.ToUpperInvariant(), NormalizedEmail = emailAddress.ToUpperInvariant() }, new System.Threading.CancellationToken()).Result;
+			UserStore<MockUser, MockRole, MockUserToken> userStore = stores.Item2;
+			String userName = "MisterTest";
+			String emailAddress = "test1@test.com";
+			IdentityResult result = userStore.CreateAsync(new MockUser { Email = emailAddress, UserName = userName, NormalizedUserName = userName.ToUpperInvariant(), NormalizedEmail = emailAddress.ToUpperInvariant() }, new System.Threading.CancellationToken()).Result;
 
 			//var user = userStore.Users.Single();
 

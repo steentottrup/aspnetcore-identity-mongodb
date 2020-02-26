@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Version>0.5.0</Version>
     <Authors>Steen F. Tøttrup</Authors>
     <Company>CreativeMinds Ivs</Company>
@@ -20,7 +20,7 @@
     <PackageReference Include="microsoft.aspnetcore.identity" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="2.0.1" />
-    <PackageReference Include="mongodb.driver" Version="2.5.0" />
+    <PackageReference Include="mongodb.driver" Version="2.10.2" />
   </ItemGroup>
 
 </Project>
